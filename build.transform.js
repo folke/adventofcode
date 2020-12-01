@@ -20,7 +20,7 @@ function compile(src, filename) {
     !fs.existsSync(compiledPath) ||
     fs.statSync(compiledPath).mtime < fs.statSync(filename).mtime
   ) {
-    console.log(`[compile] ${relativePath}`)
+    console.log(`📦️ ${relativePath}`)
     const code = esbuild.transformSync(src, {
       loader: "ts",
       format: "cjs",

@@ -37,7 +37,10 @@ export class Input {
       headers: { cookie: `session=${session}` },
     })
       .then((res) => {
-        if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`)
+        if (!res.ok)
+          throw new Error(
+            `Could not fetch input for day ${day} (${res.status} ${res.statusText})`
+          )
         return res
       })
       .then((res) => res.text())

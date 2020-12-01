@@ -1,5 +1,4 @@
-import { Input } from "./lib/input"
-import { Solution } from "./lib/day"
+import { Input, Solution } from "./lib"
 
 export const part1: Solution = (input: Input) => {
   const expenses = new Set(input.numbers())
