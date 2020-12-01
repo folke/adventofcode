@@ -1,0 +1,8 @@
+node_modules
+.env
+.env.local
+.env.*.local
+.eslintcache
+.ultra.cache.json
+tt.ts
+cache/day*.txt
