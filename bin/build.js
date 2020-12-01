@@ -16,6 +16,5 @@ module.exports = {
       platform: "node",
       bundle: true,
       outdir: "lib",
-      incremental: true,
     }),
 }
