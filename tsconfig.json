@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "assumeChangesOnlyAffectDirectDependencies": true,
     "checkJs": false,
     "declaration": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "isolatedModules": true,
     "jsx": "preserve",
     "module": "CommonJS",
     "moduleResolution": "node",
@@ -16,8 +18,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2019",
-    "assumeChangesOnlyAffectDirectDependencies": true
+    "target": "es2019"
   },
   "watchOptions": {
     "watchFile": "useFsEventsOnParentDirectory",

@@ -1,10 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable node/no-unpublished-require */
+require("../build.transform")
 
-const { build } = require("./build.js")
-
-async function main() {
-  await build()
-  require("../lib/cli")
-}
-
-if (require.main == module) void main()
+if (require.main == module) require("../src/cli")

@@ -1,8 +1,9 @@
-import dotenv from "dotenv"
 import fs from "fs"
 import fetch from "node-fetch"
 import path from "path"
-dotenv.config()
+
+const CACHE_DIR = path.resolve(__dirname, "..", "cache")
+if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR)
 
 export class Input {
   public constructor(public data: string) {}

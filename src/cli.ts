@@ -1,6 +1,8 @@
-import { Day } from "./day"
 import chalk from "colorette"
+import dotenv from "dotenv"
 import fs from "fs"
+import { Day } from "./day"
+dotenv.config()
 
 export async function run(day: number) {
   try {

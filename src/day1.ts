@@ -35,4 +35,5 @@ export const part2: Solution = (input: Input) => {
     }
   }
 }
+part2.examples = [[part1.examples[0][0], 241861950]]
 part2.answer = 70276940
