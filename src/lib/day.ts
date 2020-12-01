@@ -30,7 +30,7 @@ export class Day {
     let mod: DayModule
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
-      mod = require(path.resolve(__dirname, `day${day}`)) as DayModule
+      mod = require(path.resolve(__dirname, "..", `day${day}`)) as DayModule
     } catch {
       throw new Error(`day ${day} does not exist yet`)
     }

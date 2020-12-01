@@ -2,7 +2,7 @@ import fs from "fs"
 import fetch from "node-fetch"
 import path from "path"
 
-const CACHE_DIR = path.resolve(__dirname, "..", "cache")
+const CACHE_DIR = path.resolve(__dirname, "..", "..", "cache")
 if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR)
 
 export class Input {
@@ -17,7 +17,13 @@ export class Input {
   }
 
   public static async get(day: number) {
-    const cacheFile = path.resolve(__dirname, "..", "cache", `day${day}.txt`)
+    const cacheFile = path.resolve(
+      __dirname,
+      "..",
+      "..",
+      "cache",
+      `day${day}.txt`
+    )
     if (!fs.existsSync(cacheFile))
       fs.writeFileSync(cacheFile, await this._fetch(day), { encoding: "utf-8" })
     return new Input(fs.readFileSync(cacheFile, { encoding: "utf-8" }))
