@@ -5,4 +5,5 @@ node_modules
 .eslintcache
 .ultra.cache.json
 tt.ts
-cache/day*.txt
+cache
+lib

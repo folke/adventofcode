@@ -4,6 +4,7 @@
   "description": "",
   "main": "bin/run.js",
   "scripts": {
+    "clean": "rimraf lib",
     "lint": "yarn lint:eslint && yarn lint:ts",
     "lint:eslint": "eslint src __tests__ --ext .ts,.js --cache",
     "lint:ts": "tsc --noEmit --pretty",
