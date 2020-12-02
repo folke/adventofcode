@@ -2,11 +2,38 @@
 
 [Advent of Code 2020](https://adventofcode.com/2020) using TypeScript
 
+## :rocket: Usage
+
+There's no need to *build* anything. Source files are transpiled and cached on-the-fly using [esbuild](https://esbuild.github.io/) with pretty much **zero overhead**. Check the [src/lib/build.js](./src/lib/build.js) for more details.
+
+Running the code for a certain day, will:
+* test any examples for each part
+* test the answer (if availble) for each part
+* measure the performance and update the benchmark section of this readme
+
+To run all days:
+```shell
+$ node .
+```
+To run a specific day:
+```shell
+$ node . 3
+```
+
+> if a day has not been implemented yet, executing that day will create a new `src/day??.ts` file based on the [template](src/day.template.ts)
+
+
+
+
+
+
+## :zap: Benchmark
+
 <!-- RESULTS:BEGIN -->
 |Day | Part1 | Part2 | Stars|
 |--- | --- | --- | ---|
-|[Day 1](./src/day1.ts) | 0.05ms | 0.53ms | :star: :star: |
-|[Day 2](./src/day2.ts) | 1.8ms | 0.9ms | :star: :star: |
+|[Day 1](./src/day1.ts) | 0.05ms | 0.55ms | :star: :star: |
+|[Day 2](./src/day2.ts) | 1.73ms | 1.26ms | :star: :star: |
 |Day 3 |  |  | |
 |Day 4 |  |  | |
 |Day 5 |  |  | |
