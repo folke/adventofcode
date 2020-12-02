@@ -40,11 +40,12 @@ function compile(src, filename) {
   return fs.readFileSync(compiledPath, { encoding: "utf-8" })
 }
 
-addHook(compile, {
-  exts: [".ts"],
-})
-
 module.exports = {
+  register() {
+    addHook(compile, {
+      exts: [".ts"],
+    })
+  },
   process(src, filename) {
     return compile(src, filename)
   },
