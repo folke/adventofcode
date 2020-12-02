@@ -20,7 +20,7 @@ module.exports = {
   reportUnusedDisableDirectives: true,
   env: { node: true },
   settings: { node: { tryExtensions: [".js", ".ts", ".vue"] } },
-  ignorePatterns: ["node_modules/", "lib/", "dist/"],
+  ignorePatterns: ["node_modules/", "build/", "dist/"],
   parserOptions: {
     parser: "@typescript-eslint/parser",
     ecmaVersion: 2020,
@@ -77,7 +77,7 @@ module.exports = {
       "always",
       { exceptAfterSingleLine: true },
     ],
-    "promise/valid-params": "off",
+    // "promise/valid-params": "off",
     "prettier/prettier": "warn",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-null": "off",
