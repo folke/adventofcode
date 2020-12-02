@@ -1,10 +1,10 @@
-import { Input } from "./input"
-import path from "path"
-import fs from "fs"
 import chalk from "colorette"
+import fs from "fs"
+import path from "path"
 import { performance } from "perf_hooks"
-import { format } from "./format"
 import { addBenchmark } from "./bench"
+import { format, ms } from "./format"
+import { Input } from "./input"
 
 export type Answer = string | number
 export type Example = [string, Answer]
@@ -86,7 +86,6 @@ export class Day {
     const start = performance.now()
     const answer = await part(this.input)
     const duration = performance.now() - start
-    const durationStr = Math.round(duration * 100) / 100
 
     if (answer === undefined) throw new Error("no solution was found")
     if (part.answer !== answer)
@@ -97,7 +96,7 @@ export class Day {
     addBenchmark(this.day, part.part as 1 | 2, duration)
     console.log(
       `${chalk.green("    ✔ ")}answer: ${format(answer)} (${chalk.magenta(
-        `${durationStr}ms`
+        ms(duration)
       )})`
     )
   }

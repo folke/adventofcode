@@ -11,3 +11,7 @@ export function format(obj: unknown) {
     showProxy: false,
   })
 }
+
+export function ms(duration: number) {
+  return duration ? `${Math.round(duration * 100) / 100}ms` : ""
+}

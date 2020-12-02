@@ -2,6 +2,7 @@ import chalk from "colorette"
 import dotenv from "dotenv"
 import fs from "fs"
 import { Day } from "./day"
+import { updateReadme } from "./bench"
 dotenv.config()
 
 export async function run(day: number) {
@@ -18,6 +19,7 @@ export async function run(day: number) {
         }
       }
     }
+    updateReadme()
     console.log("🎅 🎄 done!")
   } catch (error) {
     if (error instanceof Error) console.log(chalk.red("✖ ") + error.message)
