@@ -5,8 +5,8 @@
 <!-- RESULTS:BEGIN -->
 |Day | Part1 | Part2 | Stars|
 |--- | --- | --- | ---|
-|[Day 1](./src/day1.ts) | 0.05ms | 0.57ms | :star: :star: |
-|[Day 2](./src/day2.ts) | 4.44ms | 0.65ms | :star: :star: |
+|[Day 1](./src/day1.ts) | 0.05ms | 0.53ms | :star: :star: |
+|[Day 2](./src/day2.ts) | 1.8ms | 0.9ms | :star: :star: |
 |Day 3 |  |  | |
 |Day 4 |  |  | |
 |Day 5 |  |  | |

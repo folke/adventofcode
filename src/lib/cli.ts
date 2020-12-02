@@ -9,7 +9,7 @@ export async function run(day: number) {
   try {
     if (day >= 1 && day <= 25) {
       const runner = await Day.load(day)
-      await runner.run()
+      await runner.run(true)
     } else {
       for (let d = 1; d <= 25; d++) {
         const f = `src/day${d}.ts`

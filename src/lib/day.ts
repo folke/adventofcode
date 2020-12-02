@@ -55,15 +55,15 @@ export class Day {
     return ret
   }
 
-  async run() {
+  async run(replaceBenchmark = false) {
     console.log(`${chalk.cyan(`❯ Day ${this.day}`)}`)
-    await this.runPart(this.part1)
+    await this.runPart(this.part1, replaceBenchmark)
     if (this.part2) {
-      await this.runPart(this.part2)
+      await this.runPart(this.part2, replaceBenchmark)
     }
   }
 
-  async runPart(part: Solution) {
+  async runPart(part: Solution, replaceBenchmark = false) {
     console.log(chalk.blue(`  ● Part ${part.part}`))
     if (part.examples?.length) {
       for (const example of part.examples) {
@@ -93,7 +93,7 @@ export class Day {
         chalk.red("solution failed") +
           chalk.dim(` (found: ${format(answer)}, need: ${format(part.answer)})`)
       )
-    addBenchmark(this.day, part.part as 1 | 2, duration)
+    addBenchmark(this.day, part.part as 1 | 2, duration, replaceBenchmark)
     console.log(
       `${chalk.green("    ✔ ")}answer: ${format(answer)} (${chalk.magenta(
         ms(duration)

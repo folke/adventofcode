@@ -21,8 +21,14 @@ function load() {
   }
 }
 
-export function addBenchmark(day: number, part: 1 | 2, duration: number) {
+export function addBenchmark(
+  day: number,
+  part: 1 | 2,
+  duration: number,
+  replace = true
+) {
   load()
+  if (!replace && results?.[day - 1]?.[part - 1]) return
   if (!results[day - 1]) results[day - 1] = [0, 0]
   results[day - 1][part - 1] = duration
   fs.writeFileSync(resultsPath, JSON.stringify(results), { encoding: "utf-8" })
