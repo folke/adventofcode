@@ -8,6 +8,7 @@ dotenv.config()
 export async function run(day: number) {
   try {
     if (day >= 1 && day <= 25) {
+      console.log(`🌍 https://adventofcode.com/2020/day/${day}`)
       const runner = await Day.load(day)
       await runner.run(true)
     } else {
