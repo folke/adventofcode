@@ -10,7 +10,7 @@ export type Answer = string | number
 export type Example = [string, Answer]
 
 export type Solution = {
-  (input: Input): Promise<Answer | void> | (Answer | void)
+  (input: Input): Promise<Answer | void> | Answer | void
   examples?: Example[]
   answer?: Answer
   part?: 1 | 2
