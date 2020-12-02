@@ -1000,7 +1000,7 @@ packages:
       integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
   /awilix/4.3.0:
     dependencies:
-      camel-case: 4.1.1
+      camel-case: 4.1.2
       glob: 7.1.6
       rollup-plugin-copy: 3.3.0
     dev: true
@@ -1209,13 +1209,13 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
-  /camel-case/4.1.1:
+  /camel-case/4.1.2:
     dependencies:
-      pascal-case: 3.1.1
-      tslib: 1.14.1
+      pascal-case: 3.1.2
+      tslib: 2.0.3
     dev: true
     resolution:
-      integrity: sha512-7fa2WcG4fYFkclIvEmxBbTvmibwF2/agfEBc6q3lOpVu0A13ltLsA+Hr/8Hp6kp5f+G7hKi6t8lys6XxP+1K6Q==
+      integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==
   /camelcase/5.3.1:
     dev: true
     engines:
@@ -3589,12 +3589,12 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-FN8JBzLx6CzeMrB0tg6pqlGU1wCrXW+ZXGH481kfsBqer0hToTIiHdjH4Mq8xJUbvATujKCvaREGWpGUionraA==
-  /lower-case/2.0.1:
+  /lower-case/2.0.2:
     dependencies:
-      tslib: 1.14.1
+      tslib: 2.0.3
     dev: true
     resolution:
-      integrity: sha512-LiWgfDLLb1dwbFQZsSglpRj+1ctGnayXz3Uv0/WO8n558JycT5fg6zkNcnW0G68Nn0aEldTFeEfmjCfmqry/rQ==
+      integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==
   /lru-cache/6.0.0:
     dependencies:
       yallist: 4.0.0
@@ -3757,13 +3757,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
-  /no-case/3.0.3:
+  /no-case/3.0.4:
     dependencies:
-      lower-case: 2.0.1
-      tslib: 1.14.1
+      lower-case: 2.0.2
+      tslib: 2.0.3
     dev: true
     resolution:
-      integrity: sha512-ehY/mVQCf9BL0gKfsJBvFJen+1V//U+0HQMPrWct40ixE4jnv0bfvxDbWtAHL9EcaPEOJHVVYKoQn1TlZUB8Tw==
+      integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==
   /node-fetch/2.6.1:
     dev: false
     engines:
@@ -4043,13 +4043,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
-  /pascal-case/3.1.1:
+  /pascal-case/3.1.2:
     dependencies:
-      no-case: 3.0.3
-      tslib: 1.14.1
+      no-case: 3.0.4
+      tslib: 2.0.3
     dev: true
     resolution:
-      integrity: sha512-XIeHKqIrsquVTQL2crjq3NfJUxmdLasn3TYOU0VBM+UX2a6ztAWBlJQBePLGY7VHW8+2dRadeIPK5+KImwTxQA==
+      integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==
   /pascalcase/0.1.1:
     dev: true
     engines:
@@ -5009,7 +5009,6 @@ packages:
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
   /tslib/2.0.3:
-    dev: false
     resolution:
       integrity: sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
   /tsutils/3.17.1_typescript@4.1.2:
