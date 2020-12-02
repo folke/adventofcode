@@ -6,11 +6,16 @@ dotenv.config()
 
 export async function run(day: number) {
   try {
-    if (day >= 1 && day <= 25) (await Day.load(day)).run()
-    else {
+    if (day >= 1 && day <= 25) {
+      const runner = await Day.load(day)
+      await runner.run()
+    } else {
       for (let d = 1; d <= 25; d++) {
         const f = `src/day${d}.ts`
-        if (fs.existsSync(f)) (await Day.load(d)).run()
+        if (fs.existsSync(f)) {
+          const runner = await Day.load(d)
+          await runner.run()
+        }
       }
     }
     console.log("🎅 🎄 done!")

@@ -3,14 +3,17 @@ import path from "path"
 import fs from "fs"
 import chalk from "colorette"
 import { performance } from "perf_hooks"
+import { format } from "./format"
+import { addBenchmark } from "./bench"
 
 export type Answer = string | number
 export type Example = [string, Answer]
 
 export type Solution = {
-  (input: Input): Answer | void
+  (input: Input): Promise<Answer | void> | (Answer | void)
   examples?: Example[]
   answer?: Answer
+  part?: 1 | 2
 }
 
 export type DayModule = {
@@ -24,7 +27,9 @@ export class Day {
 
   private constructor(public day: number, mod: DayModule, public input: Input) {
     this.part1 = mod.part1
+    this.part1.part = 1
     this.part2 = mod.part2
+    this.part2.part = 2
   }
 
   public static async load(day: number) {
@@ -50,27 +55,26 @@ export class Day {
     return ret
   }
 
-  run() {
+  async run() {
     console.log(`${chalk.cyan(`❯ Day ${this.day}`)}`)
-    console.log(chalk.blue("  ● Part 1"))
-    this.runPart(this.part1)
+    await this.runPart(this.part1)
     if (this.part2) {
-      console.log(chalk.blue("  ● Part 2"))
-      this.runPart(this.part2)
+      await this.runPart(this.part2)
     }
   }
 
-  runPart(part: Solution) {
-    if (part.examples) {
+  async runPart(part: Solution) {
+    console.log(chalk.blue(`  ● Part ${part.part}`))
+    if (part.examples?.length) {
       for (const example of part.examples) {
         const need = example[1]
-        const found = part(new Input(example[0]))
+        const found = await part(new Input(example[0]))
         if (`${need}` != `${found}`) {
           throw new Error(
             `${
               chalk.red("example failed") +
-              chalk.dim(` (found: ${found}, need: ${need})`)
-            }\n${example[0]}`
+              chalk.dim(` (found: ${format(found)}, need: ${format(need)})`)
+            }\n${chalk.dim(example[0])}`
           )
         }
       }
@@ -80,7 +84,7 @@ export class Day {
     }
 
     const start = performance.now()
-    const answer = part(this.input)
+    const answer = await part(this.input)
     const duration = performance.now() - start
     const durationStr = Math.round(duration * 100) / 100
 
@@ -88,9 +92,13 @@ export class Day {
     if (part.answer !== answer)
       throw new Error(
         chalk.red("solution failed") +
-          chalk.dim(` (found: ${answer}, need: ${part.answer})`)
+          chalk.dim(` (found: ${format(answer)}, need: ${format(part.answer)})`)
       )
-
-    console.log(`${chalk.green("    ✔ ")}answer: ${answer} (${durationStr}ms)`)
+    addBenchmark(this.day, part.part as 1 | 2, duration)
+    console.log(
+      `${chalk.green("    ✔ ")}answer: ${format(answer)} (${chalk.magenta(
+        `${durationStr}ms`
+      )})`
+    )
   }
 }
