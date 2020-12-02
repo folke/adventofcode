@@ -10,11 +10,11 @@ const esbuild = require("esbuild")
  * @returns {string}
  */
 function compile(src, filename) {
-  const relativePath = path.relative(path.resolve(__dirname), filename)
+  const rootPath = path.resolve(__dirname, "..", "..")
+  const relativePath = path.relative(rootPath, filename)
   const compiledPath = path
-    .resolve(__dirname, "build", relativePath)
+    .resolve(rootPath, "build", relativePath)
     .replace(/\.ts$/mu, ".js")
-  // console.log(`[check] ${relativePath}`)
 
   if (
     !fs.existsSync(compiledPath) ||
@@ -46,6 +46,12 @@ module.exports = {
       exts: [".ts"],
     })
   },
+  /**
+   *
+   * @param {string} src
+   * @param {string} filename
+   * @returns {string}
+   */
   process(src, filename) {
     return compile(src, filename)
   },

@@ -12,6 +12,6 @@ module.exports = {
     },
   },
   transform: {
-    "\\.ts$": "<rootDir>/build.transform.js",
+    "\\.ts$": "<rootDir>/src/lib/build.js",
   },
 }

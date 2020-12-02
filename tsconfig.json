@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "assumeChangesOnlyAffectDirectDependencies": true,
-    "checkJs": false,
+    "checkJs": true,
     "declaration": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
