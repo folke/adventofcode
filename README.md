@@ -38,7 +38,7 @@ $ node . 3
 |[Day 1](./src/day1.ts) | 0.05ms | 0.55ms | :star: :star: |
 |[Day 2](./src/day2.ts) | 2.28ms | 0.68ms | :star: :star: |
 |[Day 3](./src/day3.ts) | 0.05ms | 0.15ms | :star: :star: |
-|Day 4 |  |  | |
+|[Day 4](./src/day4.ts) | 2.25ms | 2.48ms | :star: :star: |
 |Day 5 |  |  | |
 |Day 6 |  |  | |
 |Day 7 |  |  | |
