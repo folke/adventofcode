@@ -33,20 +33,12 @@ export class Day {
   }
 
   public static async load(day: number) {
-    let mod: DayModule
-    try {
-      const modPath = path.resolve(__dirname, "..", `day${day}.ts`)
-      if (!fs.existsSync(modPath)) {
-        fs.copyFileSync(
-          path.resolve(__dirname, "..", "day.template.ts"),
-          modPath
-        )
-      }
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      mod = require(modPath) as DayModule
-    } catch {
-      throw new Error(`day ${day} does not exist yet`)
+    const modPath = path.resolve(__dirname, "..", `day${day}.ts`)
+    if (!fs.existsSync(modPath)) {
+      fs.copyFileSync(path.resolve(__dirname, "..", "day.template.ts"), modPath)
     }
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const mod = require(modPath) as DayModule
 
     const input = await Input.get(day)
 
