@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import fs from "fs"
 import { Day } from "./day"
 import { updateReadme } from "./bench"
+
 dotenv.config()
 
 export async function run(day: number) {

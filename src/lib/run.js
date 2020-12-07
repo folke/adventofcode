@@ -1,5 +1,4 @@
-/* eslint-disable node/no-unpublished-require */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
-require("./build").register()
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+require("esbuild-runner/register")
 require("./cli")

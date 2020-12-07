@@ -4,7 +4,7 @@
 
 ## :rocket: Usage
 
-There's no need to *build* anything. Source files are transpiled and cached on-the-fly using [esbuild](https://esbuild.github.io/) with pretty much **zero overhead**. Check [src/lib/build.js](./src/lib/build.js) for more details.
+There's no need to *build* anything. Source files are transpiled and cached on-the-fly using [esbuild-runner](https://github.com/folke/esbuild-runner/) with pretty much **zero overhead**.
 
 Running the code for a certain day, will:
 * test any examples for each part
@@ -40,8 +40,8 @@ $ node . 3
 |[Day 3](./src/day3.ts) | 0.05ms | 0.15ms | :star: :star: |
 |[Day 4](./src/day4.ts) | 2.25ms | 2.48ms | :star: :star: |
 |[Day 5](./src/day5.ts) | 1.85ms | 1.26ms | :star: :star: |
-|Day 6 |  |  | |
-|Day 7 |  |  | |
+|[Day 6](./src/day6.ts) | 2.31ms | 5.1ms | :star: :star: |
+|[Day 7](./src/day7.ts) | 3.16ms | 3.43ms | :star: :star: |
 |Day 8 |  |  | |
 |Day 9 |  |  | |
 |Day 10 |  |  | |
