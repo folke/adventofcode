@@ -21,6 +21,14 @@ function load() {
   }
 }
 
+export function total(day?: number) {
+  return day
+    ? results[day - 1][0] + results[day - 1][1]
+    : results
+        .map((tt) => tt[0] + tt[1])
+        .reduce((prev, current) => prev + current)
+}
+
 export function addBenchmark(
   day: number,
   part: 1 | 2,
