@@ -1,71 +1,7 @@
-import { Input, Solution } from "./lib"
-
-enum Operation {
-  acc,
-  jmp,
-  nop,
-}
-type Instruction = [Operation, number]
-
-class GameConsole {
-  program: Instruction[]
-  acc = 0
-  loc = 0
-
-  constructor(public code: Input) {
-    this.program = this.compile()
-  }
-
-  reset() {
-    this.acc = this.loc = 0
-  }
-
-  private compile(): Instruction[] {
-    return this.code
-      .strings()
-      .map((line) => [
-        Operation[line.slice(0, 3) as keyof typeof Operation],
-        +line.slice(4),
-      ])
-  }
-
-  step() {
-    const [op, arg] = this.program[this.loc]
-    switch (op) {
-      case Operation.acc:
-        this.acc += arg
-        this.loc++
-        break
-
-      case Operation.nop:
-        this.loc++
-        break
-
-      case Operation.jmp:
-        this.loc += arg
-        break
-
-      default:
-        throw new Error(`Invalid instruction ${op} ${arg}`)
-    }
-  }
-
-  terminated() {
-    return this.program.length === this.loc
-  }
-
-  debug() {
-    console.log(
-      `${this.loc}: ${Operation[this.program[this.loc][0]]} ${
-        this.program[this.loc][1]
-      }`,
-      { acc: this.acc }
-    )
-  }
-}
+import { Input, Operation, Solution, VM } from "./lib"
 
 export const part1: Solution = (input: Input) => {
-  const game = new GameConsole(input)
+  const game = new VM(input)
 
   const locs = new Set<number>()
 
@@ -95,37 +31,39 @@ acc +6`,
 part1.answer = 2014
 
 export const part2: Solution = (input: Input) => {
-  const game = new GameConsole(input)
-  const visited = new Set<number>()
-  let loc = game.loc
-  while (!visited.has(loc)) {
+  const game = new VM(input)
+  const state = new Map<number, number>()
+  let loc = 0
+  while (!state.has(loc)) {
     game.step()
-    visited.add(loc)
+    state.set(loc, game.acc)
     loc = game.loc
   }
 
-  for (const change of visited) {
-    if (game.program[change][0] == Operation.jmp)
-      game.program[change][0] = Operation.nop
-    else if (game.program[change][0] == Operation.nop)
-      game.program[change][0] = Operation.jmp
-    else continue
+  function swap(loc: number) {
+    if (game.program[loc][0] == Operation.jmp) {
+      game.program[loc][0] = Operation.nop
+    } else if (game.program[loc][0] == Operation.nop) {
+      game.program[loc][0] = Operation.jmp
+    } else return false
+    return true
+  }
 
-    game.reset()
-    const locs = new Set<number>()
-    let loc = game.loc
-    while (!locs.has(loc)) {
-      // game.debug()
+  // eslint-disable-next-line prefer-const
+  for (let [loc, acc] of state) {
+    if (!swap(loc)) continue
+
+    game.loc = loc
+    game.acc = acc
+    state.delete(loc)
+    while (!state.has(loc)) {
       game.step()
-      locs.add(loc)
+      state.set(loc, game.acc)
       loc = game.loc
       if (game.terminated()) return game.acc
     }
 
-    if (game.program[change][0] == Operation.jmp)
-      game.program[change][0] = Operation.nop
-    else if (game.program[change][0] == Operation.nop)
-      game.program[change][0] = Operation.jmp
+    swap(loc)
   }
 }
 part2.examples = [[part1.examples[0][0], 8]]
