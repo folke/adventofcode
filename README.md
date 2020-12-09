@@ -43,7 +43,7 @@ $ node . 3
 |[Day 6](./src/day6.ts) | 2.31ms | 5.1ms | :star: :star: |
 |[Day 7](./src/day7.ts) | 3.3ms | 3.47ms | :star: :star: |
 |[Day 8](./src/day8.ts) | 0.34ms | 0.63ms | :star: :star: |
-|Day 9 |  |  | |
+|[Day 9](./src/day9.ts) | 3.63ms | 0.28ms | :star: :star: |
 |Day 10 |  |  | |
 |Day 11 |  |  | |
 |Day 12 |  |  | |
