@@ -7,10 +7,11 @@ import { format, ms } from "./format"
 import { Input } from "./input"
 
 export type Answer = string | number
-export type Example = [string, Answer]
+export type Options = Record<string, number | string | boolean | undefined>
+export type Example = [string, Answer] | [string, Answer, Options]
 
 export type Solution = {
-  (input: Input): Promise<Answer | void> | Answer | void
+  (input: Input, options?: Options): Promise<Answer | void> | Answer | void
   examples?: Example[]
   answer?: Answer
   part?: 1 | 2
@@ -60,7 +61,7 @@ export class Day {
     if (part.examples?.length) {
       for (const example of part.examples) {
         const need = example[1]
-        const found = await part(new Input(example[0]))
+        const found = await part(new Input(example[0]), example[2])
         if (`${need}` != `${found}`) {
           throw new Error(
             `${
