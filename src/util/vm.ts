@@ -1,4 +1,4 @@
-import { Input } from "."
+import { Input } from "./input"
 
 export enum Operation {
   acc,

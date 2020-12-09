@@ -1,4 +1,4 @@
-import { Input, Solution } from "./lib"
+import { Input, Solution } from "./util"
 
 function decode(pass: string): number {
   const row = Number.parseInt(pass.slice(0, 7), 2)

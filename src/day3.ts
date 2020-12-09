@@ -1,4 +1,4 @@
-import { Input, Solution } from "./lib"
+import { Input, Solution } from "./util"
 
 function findTrees(grid: string[], right: number, down: number) {
   let [x, y, trees] = [0, 0, 0]

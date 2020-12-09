@@ -5,4 +5,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const esr = require("esbuild-runner")
 esr.install({ type: "transform", debug: true })
-require("../src/lib/cli")
+require("../src/util/cli")

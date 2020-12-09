@@ -1,4 +1,4 @@
-import { Input, Operation, Solution, VM } from "./lib"
+import { Input, Operation, Solution, VM } from "./util"
 
 export const part1: Solution = (input: Input) => {
   const game = new VM(input)

@@ -1,4 +1,4 @@
-import { Input, Solution } from "./lib"
+import { Input, Solution } from "./util"
 
 export const part1: Solution = (input: Input) => {
   let sum = 0

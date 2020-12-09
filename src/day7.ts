@@ -1,4 +1,4 @@
-import { Input, Solution } from "./lib"
+import { Input, Solution } from "./util"
 
 const ruleRegex = /^(\d+) (\w+ \w+) bags?$/u
 
