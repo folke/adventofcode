@@ -22,6 +22,13 @@ export type DayModule = {
   part2: Solution
 }
 
+export const defaultOptions = {
+  verbose: true,
+  examples: true,
+  benchmark: { replace: false, minRuns: 1, minTime: 0, warmup: 0 },
+}
+type RunOptions = typeof defaultOptions
+
 export class Day {
   part1: Solution
   part2: Solution
@@ -38,8 +45,7 @@ export class Day {
     if (!fs.existsSync(modPath)) {
       fs.copyFileSync(path.resolve(__dirname, "..", "day.template.ts"), modPath)
     }
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const mod = require(modPath) as DayModule
+    const mod = (await import(modPath)) as DayModule
 
     const input = await Input.get(day)
 
@@ -48,17 +54,18 @@ export class Day {
     return ret
   }
 
-  async run(replaceBenchmark = false) {
-    console.log(`${chalk.cyan(`❯ Day ${this.day}`)}`)
-    await this.runPart(this.part1, replaceBenchmark)
+  async run(_options: Partial<RunOptions> = {}) {
+    const options = { ...defaultOptions, ..._options }
+    if (options.verbose) console.log(`${chalk.cyan(`❯ Day ${this.day}`)}`)
+    await this.runPart(this.part1, options)
     if (this.part2) {
-      await this.runPart(this.part2, replaceBenchmark)
+      await this.runPart(this.part2, options)
     }
   }
 
-  async runPart(part: Solution, replaceBenchmark = false) {
-    console.log(chalk.blue(`  ● Part ${part.part}`))
-    if (part.examples?.length) {
+  async runPart(part: Solution, options: RunOptions) {
+    if (options.verbose) console.log(chalk.blue(`  ● Part ${part.part}`))
+    if (options.examples && part.examples?.length) {
       for (const example of part.examples) {
         const need = example[1]
         const found = await part(new Input(example[0]), example[2])
@@ -71,14 +78,27 @@ export class Day {
           )
         }
       }
-      console.log(
-        `${chalk.green("    ✔ ") + part.examples.length.toString()} examples`
-      )
+      if (options.verbose)
+        console.log(
+          `${chalk.green("    ✔ ") + part.examples.length.toString()} examples`
+        )
     }
 
+    // Run warmup runs
+    for (let run = 0; run < options.benchmark.warmup; run++)
+      await part(this.input)
+
     const start = performance.now()
-    const answer = await part(this.input)
-    const duration = performance.now() - start
+    let runs = 0
+    let answer
+    while (
+      runs < options.benchmark.minRuns ||
+      performance.now() - start < options.benchmark.minTime
+    ) {
+      answer = await part(this.input)
+      runs++
+    }
+    const duration = (performance.now() - start) / runs
 
     if (answer === undefined) throw new Error("no solution was found")
     if (part.answer !== answer)
@@ -86,11 +106,17 @@ export class Day {
         chalk.red("solution failed") +
           chalk.dim(` (found: ${format(answer)}, need: ${format(part.answer)})`)
       )
-    addBenchmark(this.day, part.part as 1 | 2, duration, replaceBenchmark)
-    console.log(
-      `${chalk.green("    ✔ ")}answer: ${format(answer)} (${chalk.magenta(
-        ms(duration)
-      )})`
+    addBenchmark(
+      this.day,
+      part.part as 1 | 2,
+      duration,
+      options.benchmark.replace
     )
+    if (options.verbose)
+      console.log(
+        `${chalk.green("    ✔ ")}answer: ${format(answer)} (${chalk.magenta(
+          ms(duration)
+        )})`
+      )
   }
 }
