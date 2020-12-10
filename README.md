@@ -23,10 +23,10 @@ My personal goal for this year is to solve all puzzles within **25ms** total, so
 |[Day 4](./src/2020/day4.ts) | 0.81ms | 0.96ms | ❗️ 1.78ms | 2.49ms | :star: :star: |
 |[Day 5](./src/2020/day5.ts) | 0.34ms | 0.33ms | ⚡️ 0.68ms | 3.16ms | :star: :star: |
 |[Day 6](./src/2020/day6.ts) | 0.13ms | 0.14ms | ⚡️ 0.27ms | 3.43ms | :star: :star: |
-|[Day 7](./src/2020/day7.ts) | 1.04ms | 0.87ms | ❗️ 1.92ms | 5.35ms | :star: :star: |
-|[Day 8](./src/2020/day8.ts) | 0.1ms | 0.14ms | ⚡️ 0.24ms | 5.59ms | :star: :star: |
-|[Day 9](./src/2020/day9.ts) | 0.09ms | 0.05ms | ⚡️ 0.14ms | 5.73ms | :star: :star: |
-|[Day 10](./src/2020/day10.ts) | 0.01ms | 0.02ms | ⚡️ 0.04ms | 5.77ms | :star: :star: |
+|[Day 7](./src/2020/day7.ts) | 0.55ms | 0.35ms | ⚡️ 0.9ms | 4.33ms | :star: :star: |
+|[Day 8](./src/2020/day8.ts) | 0.1ms | 0.14ms | ⚡️ 0.24ms | 4.57ms | :star: :star: |
+|[Day 9](./src/2020/day9.ts) | 0.09ms | 0.05ms | ⚡️ 0.14ms | 4.71ms | :star: :star: |
+|[Day 10](./src/2020/day10.ts) | 0.01ms | 0.02ms | ⚡️ 0.04ms | 4.75ms | :star: :star: |
 
 ### :snowflake: 2015
 |[2015](./src/2015) | Part1 | Part2 | Total | Days Total | Stars|

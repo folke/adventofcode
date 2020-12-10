@@ -1,22 +1,30 @@
 import { Input, Solution } from "../util"
 
-const ruleRegex = /^(\d+) (\w+ \w+) bags?$/u
-
+// Parse the rule looping over the character instead of using regexes for performance
 function parse(rule: string) {
-  const [bag, contents] = rule.split(" bags contain", 2)
+  const bagsContain = rule.indexOf(" bags contain ")
+  const bag = rule.slice(0, bagsContain)
 
   const children = new Map<string, number>()
-  if (contents.includes("no other bags")) return { bag, children }
-  const parts = contents
-    .replace(".", "")
-    .split(",")
-    .map((x) => x.trim())
-  for (const p of parts) {
-    const m = ruleRegex.exec(p)
-    if (m) {
-      children.set(m[2], +m[1])
-    } else throw new Error(`invalid input for ${p}`)
-  }
+  if (rule.includes("no other bags")) return { bag, children }
+
+  // loop over contents string. much faster than regex
+  let start = bagsContain + 14
+  let end = 0
+  do {
+    end = rule.indexOf(" ", start)
+    const amount = +rule.slice(start, end)
+    start = end + 1
+    end = rule.indexOf(" ", start)
+    end = rule.indexOf(" ", end + 1)
+    children.set(rule.slice(start, end), amount)
+    for (let c = end + 1; c < rule.length; c++) {
+      if (rule.charAt(c) == "." || rule.charAt(c) == ",") {
+        start = c + 2
+        break
+      }
+    }
+  } while (start < rule.length)
   return { bag, children }
 }
 
