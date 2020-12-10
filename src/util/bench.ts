@@ -60,7 +60,14 @@ export function addBenchmark(
 function getTable(year: number) {
   const results = loadYear(year)
   const ret: string[][] = [
-    [`${year}`, "Part1", "Part2", "Total", "Days Total", "Stars"],
+    [
+      `[${year}](./src/${year})`,
+      "Part1",
+      "Part2",
+      "Total",
+      "Days Total",
+      "Stars",
+    ],
     ["---", "---", "---", "---", "---", "---"],
   ]
   let cummulative = 0
@@ -81,7 +88,9 @@ function getTable(year: number) {
     if (times?.[1]) row[5] += ":star: "
     ret.push(row)
   }
-  return ret.map((row) => `|${row.join(" | ")}|`).join("\n")
+  return `### :snowflake: ${year}\n${ret
+    .map((row) => `|${row.join(" | ")}|`)
+    .join("\n")}`
 }
 
 export function updateReadme() {
