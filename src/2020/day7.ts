@@ -1,4 +1,4 @@
-import { Input, Solution } from "./util"
+import { Input, Solution } from "adventofcode-ts"
 
 const ruleRegex = /^(\d+) (\w+ \w+) bags?$/u
 

@@ -1,4 +1,6 @@
-import { Input, Operation, Solution, VM } from "./util"
+import { Input, Solution } from "adventofcode-ts"
+
+import { Operation, VM } from "./util"
 
 export const part1: Solution = (input: Input) => {
   const game = new VM(input)

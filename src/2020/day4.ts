@@ -1,4 +1,4 @@
-import { Input, Solution } from "./util"
+import { Input, Solution } from "adventofcode-ts"
 
 const passportFields = [
   "byr",

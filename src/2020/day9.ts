@@ -1,4 +1,4 @@
-import { Input, Solution } from "./util"
+import { Input, Solution } from "adventofcode-ts"
 
 export const part1: Solution = (input: Input, options = { preamble: 25 }) => {
   const numbers = input.numbers()

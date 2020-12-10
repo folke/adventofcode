@@ -1,8 +1,0 @@
-#!/usr/bin/env node
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const esr = require("esbuild-runner")
-esr.install({ type: "transform", debug: true })
-require("../src/util/cli")

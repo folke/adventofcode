@@ -1,4 +1,4 @@
-import { Input, Solution } from "./util"
+import { Input, Solution } from "adventofcode-ts"
 
 function decode(pass: string): number {
   const row = Number.parseInt(pass.slice(0, 7), 2)

@@ -60,6 +60,7 @@
     "typesync": "^0.8.0"
   },
   "dependencies": {
+    "adventofcode-ts": "link:../adventofcode-ts",
     "colorette": "^1.2.1",
     "dotenv": "^8.2.0",
     "esbuild": "^0.8.21",

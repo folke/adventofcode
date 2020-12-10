@@ -1,4 +1,4 @@
-import { Input } from "./input"
+import { Input } from "adventofcode-ts"
 
 export enum Operation {
   acc,

@@ -9,7 +9,6 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "isolatedModules": true,
     "jsx": "preserve",
     "module": "CommonJS",
     "moduleResolution": "node",
