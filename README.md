@@ -42,11 +42,11 @@ $ node . 3
 |[Day 3](./src/day3.ts) | 0.01ms | 0.03ms | ⚡️ 0.04ms | 0.86ms | :star: :star: |
 |[Day 4](./src/day4.ts) | 0.8ms | 0.94ms | ❗️ 1.74ms | 2.61ms | :star: :star: |
 |[Day 5](./src/day5.ts) | 0.66ms | 0.68ms | ❗️ 1.34ms | 3.94ms | :star: :star: |
-|[Day 6](./src/day6.ts) | 1ms | 1.66ms | ❗️ 2.66ms | 6.6ms | :star: :star: |
-|[Day 7](./src/day7.ts) | 1.07ms | 0.86ms | ❗️ 1.94ms | 8.54ms | :star: :star: |
-|[Day 8](./src/day8.ts) | 0.13ms | 0.18ms | ⚡️ 0.3ms | 8.84ms | :star: :star: |
-|[Day 9](./src/day9.ts) | 0.14ms | 0.1ms | ⚡️ 0.24ms | 9.08ms | :star: :star: |
-|[Day 10](./src/day10.ts) | 0.02ms | 0.03ms | ⚡️ 0.05ms | 9.13ms | :star: :star: |
+|[Day 6](./src/day6.ts) | 0.13ms | 0.14ms | ⚡️ 0.27ms | 4.22ms | :star: :star: |
+|[Day 7](./src/day7.ts) | 1.07ms | 0.86ms | ❗️ 1.94ms | 6.15ms | :star: :star: |
+|[Day 8](./src/day8.ts) | 0.13ms | 0.18ms | ⚡️ 0.3ms | 6.46ms | :star: :star: |
+|[Day 9](./src/day9.ts) | 0.14ms | 0.1ms | ⚡️ 0.24ms | 6.7ms | :star: :star: |
+|[Day 10](./src/day10.ts) | 0.02ms | 0.03ms | ⚡️ 0.05ms | 6.75ms | :star: :star: |
 |Day 11 |  |  |  |  | |
 |Day 12 |  |  |  |  | |
 |Day 13 |  |  |  |  | |
