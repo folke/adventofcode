@@ -3,12 +3,18 @@ export * from "./day"
 export * from "./format"
 export * from "./bench"
 
-export function eat(str: string, offset: number, delims: string) {
-  if (delims.length == 1) return str.indexOf(delims, offset)
-  let ret = str.length
-  for (let d = 0; d < delims.length; d++) {
-    const i = str.indexOf(delims.charAt(d), offset)
-    if (i != -1 && (ret === -1 || i < ret)) ret = i
+export type FieldState = { offset: number }
+export function field(
+  state: FieldState,
+  str: string,
+  delims: string[]
+): string {
+  let end = str.length
+  for (const delim of delims) {
+    const i = str.indexOf(delim, state.offset)
+    if (i != -1 && i < end) end = i
   }
+  const ret = str.slice(state.offset, end)
+  state.offset = end + 1
   return ret
 }

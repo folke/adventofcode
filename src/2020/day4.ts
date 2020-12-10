@@ -1,4 +1,4 @@
-import { Input, Solution, eat } from "../util"
+import { field, Input, Solution } from "../util"
 
 const passportFields = [
   "byr",
@@ -20,18 +20,12 @@ function validate(input: Input, validator?: (passport: Passport) => unknown) {
     const passport = new Map() as Passport
 
     // Ugly, but alot faster than using split / map / etc...
-    let [start, end] = [0, 0]
+    const state = { offset: 0 }
     do {
-      end = eat(data, start + 1, ":")
-      const key = data.slice(start, end)
-      start = end + 1
-
-      end = eat(data, start + 1, " \n")
-      if (key !== "cid")
-        passport.set(key as PassportField, data.slice(start, end))
-      start = end + 1
-    } while (start < data.length)
-    // console.log(passport)
+      const key = field(state, data, [":"])
+      const val = field(state, data, [" ", "\n"])
+      if (key !== "cid") passport.set(key as PassportField, val)
+    } while (state.offset < data.length)
     if (passportFields.length !== passport.size) {
       invalid++
       continue
