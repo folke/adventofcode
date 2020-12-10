@@ -31,7 +31,9 @@ My personal goal for this year is to solve all puzzles within **25ms** total, so
 ### :snowflake: 2015
 |[2015](./src/2015) | Part1 | Part2 | Total | Days Total | Stars|
 |--- | --- | --- | --- | --- | ---|
-|[Day 1](./src/2015/day1.ts) | 0.08ms | 0.01ms | ⚡️ 0.09ms | 0.09ms | :star: :star: |
+|[Day 1](./src/2015/day1.ts) | 0.09ms | 0.01ms | ⚡️ 0.09ms | 0.09ms | :star: :star: |
+|[Day 2](./src/2015/day2.ts) | 0.63ms | 0.81ms | ❗️ 1.43ms | 1.53ms | :star: :star: |
+|[Day 3](./src/2015/day3.ts) | 0.26ms | 0.28ms | ⚡️ 0.54ms | 2.07ms | :star: :star: |
 <!-- RESULTS:END -->
 
 ## :rocket: Usage
