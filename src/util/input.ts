@@ -3,9 +3,14 @@ import fetch from "node-fetch"
 import path from "path"
 
 export class Input {
-  public constructor(public data: string) {}
+  lines: string[]
+
+  public constructor(public data: string) {
+    this.lines = this.data.trim().split("\n")
+  }
 
   strings(separator: string | RegExp = "\n") {
+    if (separator == "\n") return this.lines
     return this.data.trim().split(separator)
   }
 

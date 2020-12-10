@@ -1,7 +1,7 @@
 import chalk from "colorette"
 import fs from "fs"
 import path from "path"
-import { performance } from "perf_hooks"
+import { performance, PerformanceObserver } from "perf_hooks"
 import { addBenchmark } from "./bench"
 import { format, ms } from "./format"
 import { Input } from "./input"
@@ -95,21 +95,7 @@ export class Day {
         )
     }
 
-    // Run warmup runs
-    for (let run = 0; run < options.benchmark.warmup; run++)
-      await part(this.input)
-
-    const start = performance.now()
-    let runs = 0
-    let answer
-    while (
-      runs < options.benchmark.minRuns ||
-      performance.now() - start < options.benchmark.minTime
-    ) {
-      answer = await part(this.input)
-      runs++
-    }
-    const duration = (performance.now() - start) / runs
+    const { answer, duration } = await this.measure(part, options)
 
     if (answer === undefined) throw new Error("no solution was found")
     if (part.answer !== answer)
@@ -130,5 +116,34 @@ export class Day {
           ms(duration)
         )})`
       )
+  }
+
+  private async measure(part: Solution, options: RunOptions) {
+    // Wrap the solver for performance measurment
+    const wrapped = performance.timerify(() => part(this.input))
+
+    // Run warmup runs
+    for (let run = 0; run < options.benchmark.warmup; run++) await wrapped()
+
+    // Create performance observer to measure timing
+    let duration = 0
+    const obs = new PerformanceObserver((list) => {
+      duration += list.getEntries()[0].duration
+    })
+    obs.observe({ entryTypes: ["function"], buffered: false })
+
+    // Run the solver multiple times
+    const start = performance.now()
+    let runs = 0
+    let answer
+    while (
+      runs++ < options.benchmark.minRuns ||
+      performance.now() - start < options.benchmark.minTime
+    ) {
+      answer = await wrapped()
+    }
+    obs.disconnect()
+
+    return { answer, duration: duration / runs }
   }
 }
