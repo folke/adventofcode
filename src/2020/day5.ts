@@ -7,15 +7,20 @@ function decode(pass: string): number {
 }
 
 function getPasses(input: Input) {
-  return input.data
-    .trim()
-    .replace(/F|L/gu, "0")
-    .replace(/B|R/gu, "1")
-    .split("\n")
+  const passes = new Set<number>()
+  let pass = ""
+  for (const c of input.data) {
+    if (c == "\n") {
+      passes.add(decode(pass))
+      pass = ""
+    } else pass += c == "F" || c == "L" ? "0" : "1"
+  }
+  if (pass.length) passes.add(decode(pass))
+  return passes
 }
 
 export const part1: Solution = (input: Input) => {
-  return Math.max(...getPasses(input).map((pass) => decode(pass)))
+  return Math.max(...getPasses(input))
 }
 part1.examples = [
   [`BFFFBBFRRR`, 567],
@@ -25,7 +30,8 @@ part1.examples = [
 part1.answer = 838
 
 export const part2: Solution = (input: Input) => {
-  const ids = new Set(getPasses(input).map((pass) => decode(pass)))
+  const ids = getPasses(input)
+
   let foundExisting = false
   for (let id = 0; id <= 127 * 8; id++) {
     if (ids.has(id)) foundExisting = true
