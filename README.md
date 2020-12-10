@@ -35,32 +35,21 @@ $ node . 3
 ## :zap: Benchmark
 
 <!-- RESULTS:BEGIN -->
-|Day | Part1 | Part2 | Total | Days Total | Stars|
+|2020 | Part1 | Part2 | Total | Days Total | Stars|
 |--- | --- | --- | --- | --- | ---|
-|[Day 1](./src/day1.ts) | 0.03ms | 0.21ms | ⚡️ 0.23ms | 0.23ms | :star: :star: |
-|[Day 2](./src/day2.ts) | 0.37ms | 0.22ms | ⚡️ 0.59ms | 0.82ms | :star: :star: |
-|[Day 3](./src/day3.ts) | 0.01ms | 0.03ms | ⚡️ 0.04ms | 0.86ms | :star: :star: |
-|[Day 4](./src/day4.ts) | 0.8ms | 0.94ms | ❗️ 1.74ms | 2.61ms | :star: :star: |
-|[Day 5](./src/day5.ts) | 0.66ms | 0.68ms | ❗️ 1.34ms | 3.94ms | :star: :star: |
-|[Day 6](./src/day6.ts) | 0.13ms | 0.14ms | ⚡️ 0.27ms | 4.22ms | :star: :star: |
-|[Day 7](./src/day7.ts) | 1.07ms | 0.86ms | ❗️ 1.94ms | 6.15ms | :star: :star: |
-|[Day 8](./src/day8.ts) | 0.13ms | 0.18ms | ⚡️ 0.3ms | 6.46ms | :star: :star: |
-|[Day 9](./src/day9.ts) | 0.14ms | 0.1ms | ⚡️ 0.24ms | 6.7ms | :star: :star: |
-|[Day 10](./src/day10.ts) | 0.02ms | 0.03ms | ⚡️ 0.05ms | 6.75ms | :star: :star: |
-|Day 11 |  |  |  |  | |
-|Day 12 |  |  |  |  | |
-|Day 13 |  |  |  |  | |
-|Day 14 |  |  |  |  | |
-|Day 15 |  |  |  |  | |
-|Day 16 |  |  |  |  | |
-|Day 17 |  |  |  |  | |
-|Day 18 |  |  |  |  | |
-|Day 19 |  |  |  |  | |
-|Day 20 |  |  |  |  | |
-|Day 21 |  |  |  |  | |
-|Day 22 |  |  |  |  | |
-|Day 23 |  |  |  |  | |
-|Day 24 |  |  |  |  | |
-|Day 25 |  |  |  |  | |
+|[Day 1](./src/2020/day1.ts) | 0.03ms | 0.21ms | ⚡️ 0.23ms | 0.23ms | :star: :star: |
+|[Day 2](./src/2020/day2.ts) | 0.37ms | 0.21ms | ⚡️ 0.58ms | 0.82ms | :star: :star: |
+|[Day 3](./src/2020/day3.ts) | 0.01ms | 0.02ms | ⚡️ 0.04ms | 0.86ms | :star: :star: |
+|[Day 4](./src/2020/day4.ts) | 0.81ms | 0.93ms | ❗️ 1.74ms | 2.59ms | :star: :star: |
+|[Day 5](./src/2020/day5.ts) | 0.65ms | 0.68ms | ❗️ 1.33ms | 3.92ms | :star: :star: |
+|[Day 6](./src/2020/day6.ts) | 0.14ms | 0.14ms | ⚡️ 0.28ms | 4.2ms | :star: :star: |
+|[Day 7](./src/2020/day7.ts) | 1.03ms | 0.81ms | ❗️ 1.84ms | 6.04ms | :star: :star: |
+|[Day 8](./src/2020/day8.ts) | 0.16ms | 0.21ms | ⚡️ 0.37ms | 6.41ms | :star: :star: |
+|[Day 9](./src/2020/day9.ts) | 0.13ms | 0.09ms | ⚡️ 0.22ms | 6.63ms | :star: :star: |
+|[Day 10](./src/2020/day10.ts) | 0.02ms | 0.03ms | ⚡️ 0.05ms | 6.68ms | :star: :star: |
+
+|2015 | Part1 | Part2 | Total | Days Total | Stars|
+|--- | --- | --- | --- | --- | ---|
+|[Day 1](./src/2015/day1.ts) | 0.08ms | 0.01ms | ⚡️ 0.09ms | 0.09ms | :star: :star: |
 <!-- RESULTS:END -->
 

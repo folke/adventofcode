@@ -1,4 +1,4 @@
-import { Input, Solution } from "adventofcode-ts"
+import { Input, Solution } from "../util"
 
 export const part1: Solution = (input: Input) => {
   const regex = /^(\d+)-(\d+) ([a-z]): ([a-z]+)$/u
