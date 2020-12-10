@@ -13,5 +13,12 @@ export function format(obj: unknown) {
 }
 
 export function ms(duration: number) {
-  return duration ? `${Math.round(duration * 100) / 100}ms` : ""
+  if (!duration) return ""
+
+  // console.log(duration)
+  if (duration < 1) {
+    duration *= 1000
+    return `${Math.round(duration)}µs`
+  }
+  return `${Math.round(duration * 100) / 100}ms`
 }

@@ -39,7 +39,7 @@ export function total(year: number, day?: number) {
   return day
     ? results[day - 1][0] + results[day - 1][1]
     : results
-        .map((tt) => tt[0] + tt[1])
+        .map((tt) => (tt ? tt[0] + tt[1] : 0))
         .reduce((prev, current) => prev + current)
 }
 
