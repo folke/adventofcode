@@ -45,20 +45,25 @@ export function addBenchmark(
 export function updateReadme() {
   load()
   const ret: string[][] = [
-    ["Day", "Part1", "Part2", "Stars"],
-    ["---", "---", "---", "---"],
+    ["Day", "Part1", "Part2", "Total", "Days Total", "Stars"],
+    ["---", "---", "---", "---", "---", "---"],
   ]
+  let cummulative = 0
   for (let d = 1; d <= 25; d++) {
     const times = results[d - 1]
+    const total = times?.[0] + times?.[1]
+    cummulative += total
     // if (!times) continue
     const row = [
       times ? `[Day ${d}](./src/day${d}.ts)` : `Day ${d}`,
       ms(times?.[0]),
       ms(times?.[1]),
+      total ? `${total > 1 ? "❗️" : "⚡️"} ${ms(total)}` : "",
+      ms(cummulative),
       "",
     ]
-    if (times?.[0]) row[3] += ":star: "
-    if (times?.[1]) row[3] += ":star: "
+    if (times?.[0]) row[5] += ":star: "
+    if (times?.[1]) row[5] += ":star: "
     ret.push(row)
   }
   const table = ret.map((row) => `|${row.join(" | ")}|`).join("\n")
