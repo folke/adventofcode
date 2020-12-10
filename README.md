@@ -32,9 +32,10 @@ My personal goal for this year is to solve all puzzles within **25ms** total, so
 |[2015](./src/2015) | Part1 | Part2 | Total | Days Total | Stars|
 |--- | --- | --- | --- | --- | ---|
 |[Day 1](./src/2015/day1.ts) | 0.09ms | 0.01ms | ⚡️ 0.09ms | 0.09ms | :star: :star: |
-|[Day 2](./src/2015/day2.ts) | 0.63ms | 0.81ms | ❗️ 1.43ms | 1.53ms | :star: :star: |
-|[Day 3](./src/2015/day3.ts) | 0.26ms | 0.28ms | ⚡️ 0.54ms | 2.07ms | :star: :star: |
-|[Day 4](./src/2015/day4.ts) | 592.43ms | 18805.74ms | ❗️ 19398.16ms | 19400.23ms | :star: :star: |
+|[Day 2](./src/2015/day2.ts) | 0.61ms | 0.79ms | ❗️ 1.4ms | 1.49ms | :star: :star: |
+|[Day 3](./src/2015/day3.ts) | 0.26ms | 0.28ms | ⚡️ 0.55ms | 2.04ms | :star: :star: |
+|[Day 4](./src/2015/day4.ts) | 592.43ms | 18805.74ms | ❗️ 19398.16ms | 19400.2ms | :star: :star: |
+|[Day 5](./src/2015/day5.ts) | 0.38ms | 0.7ms | ❗️ 1.08ms | 19401.28ms | :star: :star: |
 <!-- RESULTS:END -->
 
 ## :rocket: Usage
