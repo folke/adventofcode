@@ -1,4 +1,4 @@
-import { Input, Solution } from "../util"
+import { Input, Solution, eat } from "../util"
 
 // Parse the rule looping over the character instead of using regexes for performance
 function parse(rule: string) {
@@ -12,19 +12,15 @@ function parse(rule: string) {
   let start = bagsContain + 14
   let end = 0
   do {
-    end = rule.indexOf(" ", start)
+    end = eat(rule, start, " ")
     const amount = +rule.slice(start, end)
     start = end + 1
-    end = rule.indexOf(" ", start)
-    end = rule.indexOf(" ", end + 1)
+    end = eat(rule, start, " ")
+    end = eat(rule, end + 1, " ")
     children.set(rule.slice(start, end), amount)
-    for (let c = end + 1; c < rule.length; c++) {
-      if (rule.charAt(c) == "." || rule.charAt(c) == ",") {
-        start = c + 2
-        break
-      }
-    }
+    start = eat(rule, end + 1, ".,") + 2
   } while (start < rule.length)
+  // console.log({ bag, children })
   return { bag, children }
 }
 
