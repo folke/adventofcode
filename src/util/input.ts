@@ -1,6 +1,7 @@
 import fs from "fs"
 import fetch from "node-fetch"
 import path from "path"
+import { Grid } from "./grid"
 
 export class Input {
   lines: string[]
@@ -16,6 +17,10 @@ export class Input {
 
   numbers(separator: string | RegExp = "\n") {
     return this.strings(separator).map((n) => +n)
+  }
+
+  grid() {
+    return Grid.fromString(this.data)
   }
 
   public static async get(year: number, day: number) {

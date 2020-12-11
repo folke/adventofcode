@@ -2,6 +2,7 @@ export * from "./input"
 export * from "./day"
 export * from "./format"
 export * from "./bench"
+export * from "./grid"
 
 export type FieldState = { offset: number }
 export function field(
