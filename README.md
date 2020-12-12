@@ -17,18 +17,18 @@ My personal goal for this year is to solve all puzzles within **25ms** total, so
 ### :snowflake: 2020
 |[2020](./src/2020) | Part1 | Part2 | Total | Days Total | Stars|
 |--- | --- | --- | --- | --- | ---|
-|[Day 1](./src/2020/day1.ts) | 12µs | 190µs | ⚡️ 202µs | 202µs | :star: :star: |
-|[Day 2](./src/2020/day2.ts) | 315µs | 172µs | ⚡️ 487µs | 689µs | :star: :star: |
-|[Day 3](./src/2020/day3.ts) | 3µs | 15µs | ⚡️ 17µs | 706µs | :star: :star: |
-|[Day 4](./src/2020/day4.ts) | 297µs | 425µs | ⚡️ 723µs | 1.43ms | :star: :star: |
-|[Day 5](./src/2020/day5.ts) | 346µs | 330µs | ⚡️ 676µs | 2.1ms | :star: :star: |
-|[Day 6](./src/2020/day6.ts) | 128µs | 141µs | ⚡️ 269µs | 2.37ms | :star: :star: |
-|[Day 7](./src/2020/day7.ts) | 585µs | 387µs | ⚡️ 972µs | 3.35ms | :star: :star: |
-|[Day 8](./src/2020/day8.ts) | 97µs | 141µs | ⚡️ 238µs | 3.58ms | :star: :star: |
-|[Day 9](./src/2020/day9.ts) | 94µs | 47µs | ⚡️ 141µs | 3.72ms | :star: :star: |
-|[Day 10](./src/2020/day10.ts) | 14µs | 23µs | ⚡️ 37µs | 3.76ms | :star: :star: |
-|[Day 11](./src/2020/day11.ts) | 453.82ms | 211.6ms | ❗️ 665.42ms | 669.18ms | :star: :star: |
-|[Day 12](./src/2020/day12.ts) | 87µs | 286µs | ⚡️ 372µs | 669.55ms | :star: :star: |
+|[Day 1](./src/2020/day1.ts) | 12µs | 196µs | ⚡️ 208µs | 208µs | :star: :star: |
+|[Day 2](./src/2020/day2.ts) | 320µs | 175µs | ⚡️ 496µs | 703µs | :star: :star: |
+|[Day 3](./src/2020/day3.ts) | 3µs | 15µs | ⚡️ 18µs | 721µs | :star: :star: |
+|[Day 4](./src/2020/day4.ts) | 302µs | 429µs | ⚡️ 730µs | 1.45ms | :star: :star: |
+|[Day 5](./src/2020/day5.ts) | 362µs | 356µs | ⚡️ 718µs | 2.17ms | :star: :star: |
+|[Day 6](./src/2020/day6.ts) | 131µs | 143µs | ⚡️ 274µs | 2.44ms | :star: :star: |
+|[Day 7](./src/2020/day7.ts) | 573µs | 392µs | ⚡️ 965µs | 3.41ms | :star: :star: |
+|[Day 8](./src/2020/day8.ts) | 100µs | 144µs | ⚡️ 244µs | 3.65ms | :star: :star: |
+|[Day 9](./src/2020/day9.ts) | 93µs | 47µs | ⚡️ 141µs | 3.79ms | :star: :star: |
+|[Day 10](./src/2020/day10.ts) | 14µs | 23µs | ⚡️ 37µs | 3.83ms | :star: :star: |
+|[Day 11](./src/2020/day11.ts) | 98.89ms | 171.14ms | ❗️ 270.02ms | 273.85ms | :star: :star: |
+|[Day 12](./src/2020/day12.ts) | 23µs | 26µs | ⚡️ 50µs | 273.9ms | :star: :star: |
 
 ### :snowflake: 2019
 |[2019](./src/2019) | Part1 | Part2 | Total | Days Total | Stars|
