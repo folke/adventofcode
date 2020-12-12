@@ -47,9 +47,9 @@ function parseArgs(args: string[] = process.argv) {
         options.examples = false
         options.benchmark = {
           replace: true,
-          minRuns: 10,
+          minRuns: 5,
           minTime: 500,
-          warmup: 10,
+          warmup: 3,
         }
         continue
 

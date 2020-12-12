@@ -128,19 +128,25 @@ export class Day {
     // Create performance observer to measure timing
     let duration = 0
     const obs = new PerformanceObserver((list) => {
-      duration += list.getEntries()[0].duration
+      for (const entry of list.getEntries()) {
+        duration += entry.duration
+      }
     })
-    obs.observe({ entryTypes: ["function"], buffered: false })
+    obs.observe({
+      entryTypes: ["function"],
+      buffered: false,
+    })
 
     // Run the solver multiple times
     const start = performance.now()
     let runs = 0
     let answer
     while (
-      runs++ < options.benchmark.minRuns ||
+      runs < options.benchmark.minRuns ||
       performance.now() - start < options.benchmark.minTime
     ) {
       answer = await wrapped()
+      runs++
     }
     obs.disconnect()
 
