@@ -1,4 +1,4 @@
-import { ReadonlyData, ReadonlyGrid } from "../src/util"
+import { Grid, ReadonlyData, ReadonlyGrid } from "../src/util"
 
 const cases: [ReadonlyData<unknown>, number, number][] = [
   ["123456789", 3, 3],
@@ -31,6 +31,20 @@ test.each(cases)("Grid#%# %p (%ix%i)", (data, width, height) => {
   for (let i = 0; i < data.length; i++) {
     expect(arr[i]).toBe(data[i])
   }
+})
+
+test("index vs cell", () => {
+  const grid = new ReadonlyGrid("123456789", 3)
+  for (let x = 0; x < 3; x++) {
+    for (let y = 0; y < 3; y++) {
+      expect(grid.index(x, y)).toBe(y * 3 + x)
+    }
+  }
+})
+
+test("hi", () => {
+  const grid = new Grid("123456789".split(""), 3)
+  expect([...grid.hi(1, 0).values()]).toEqual(["1", "2", "4", "5", "7", "8"])
 })
 
 // console.log(

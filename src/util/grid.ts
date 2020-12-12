@@ -30,12 +30,14 @@ export class ReadonlyGrid<T> {
   height: number
   _hi: [number, number] = [0, 0]
   _lo: [number, number] = [0, 0]
+  private _width: number
 
   constructor(
     public data: ReadonlyData<T>,
     public width: number,
     options?: Partial<GridOptions>
   ) {
+    this._width = width
     this.options = { ...defaultOptions, ...options }
     this.height = Math.ceil(data.length / width)
   }
@@ -57,57 +59,63 @@ export class ReadonlyGrid<T> {
   }
 
   index(x: number, y: number): number {
-    return (
-      (y + this._lo[1]) * (this.width + this._lo[0] + this._hi[0]) +
-      x +
-      this._lo[0]
-    )
+    return (y + this._lo[1]) * this._width + x + this._lo[0]
   }
 
-  cell(index: number): [number, number] {
-    const w = this.width + this._lo[0] + this._hi[0]
-    const y = Math.floor(index / w)
-    const x = index % w
-    return [x - this._lo[0], y - this._lo[1]]
-  }
+  // private cell(index: number): [number, number] {
+  //   const w = this.width + this._lo[0] + this._hi[0]
+  //   const y = Math.floor(index / w)
+  //   const x = index % w
+  //   return [x - this._lo[0], y - this._lo[1]]
+  // }
 
-  valid(index: number) {
-    const [x, y] = this.cell(index)
-    // console.log([x, y])
-    return x >= 0 && y >= 0 && x < this.width && y < this.height
-  }
+  // private valid(index: number) {
+  //   const [x, y] = this.cell(index)
+  //   // console.log([x, y])
+  //   return x >= 0 && y >= 0 && x < this.width && y < this.height
+  // }
 
-  validXY(x: number, y: number) {
-    // console.log([x, y])
+  valid(x: number, y: number) {
     return x >= 0 && y >= 0 && x < this.width && y < this.height
   }
 
   forEach(cb: (value: T, x: number, y: number, index: number) => void): void {
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.valid(i)) cb(this.data[i], ...this.cell(i), i)
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        const index = this.index(x, y)
+        cb(this.data[index], x, y, index)
+      }
     }
   }
 
   map<U>(cb: (value: T, x: number, y: number, index: number) => U): Grid<U> {
     const data: U[] = []
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.valid(i)) data.push(cb(this.data[i], ...this.cell(i), i))
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        const index = this.index(x, y)
+        data.push(cb(this.data[index], x, y, index))
+      }
     }
     return new Grid(data, this.width, this.options)
   }
 
   *values() {
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.valid(i)) yield this.data[i]
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        yield this.get(x, y)
+      }
     }
   }
 
-  *adjacent(x: number, y: number) {
-    for (const xx of [x - 1, x, x + 1]) {
-      for (const yy of [y - 1, y, y + 1]) {
+  *adjacent(
+    x: number,
+    y: number
+  ): Generator<[T, number, number], void, unknown> {
+    for (const yy of [y - 1, y, y + 1]) {
+      for (const xx of [x - 1, x, x + 1]) {
         if (xx == x && yy == y) continue
         const index = this.index(xx, yy)
-        if (!this.validXY(xx, yy)) continue
+        if (!this.valid(xx, yy)) continue
         yield [this.data[index], xx, yy]
       }
     }
@@ -150,13 +158,12 @@ export class ReadonlyGrid<T> {
     depth: number,
     options: InspectOptionsStylized
   ): string => {
-    const that = this
     const name = this instanceof Grid ? "Grid" : "*Grid"
     let ret = options.stylize(`${name}(`, "special")
     ret += [...this.rows()]
       .map((row) => {
         let line: string | ReadonlyData<T> = row
-        if (that.options?.inspect.joinRows)
+        if (this.options?.inspect.joinRows)
           line = Array.isArray(row) ? row.join("") : row
         return inspect(line, {
           ...options,
@@ -175,7 +182,7 @@ export class Grid<T> extends ReadonlyGrid<T> {
   constructor(
     public data: Data<T>,
     public width: number,
-    options: GridOptions
+    options?: GridOptions
   ) {
     super(data, width, options)
   }
@@ -190,3 +197,31 @@ export class Grid<T> extends ReadonlyGrid<T> {
     }).hi(1, 0)
   }
 }
+
+// async function run() {
+//   const grid = Grid.fromString((await Input.get(2020, 11)).data).clone(false)
+
+//   const test = +"2"
+
+//   const start = performance.now()
+//   const runs = 100
+//   for (let run = 0; run < runs; run++) {
+//     if (test == 1) {
+//       // for (let i = 0; i < grid.data.length; i++) {
+//       //   if (grid.valid(i)) {
+//       //     const v = grid.data[i]
+//       //   }
+//       // }
+//     } else if (test == 2) {
+//       for (let x = 0; x < grid.width; x++) {
+//         for (let y = 0; y < grid.height; y++) {
+//           const v = grid.get(x, y)
+//         }
+//       }
+//     }
+//   }
+
+//   console.log(ms((performance.now() - start) / runs))
+// }
+
+// void run()
