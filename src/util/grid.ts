@@ -22,12 +22,21 @@ export type Data<T> = (Array<T> | TypedArray<T>) & {
   slice(start?: number, end?: number): Data<T>
 }
 
+const defaultOptions = { inspect: { joinRows: false } }
+export type GridOptions = typeof defaultOptions
+
 export class ReadonlyGrid<T> {
+  options: GridOptions
   height: number
   _hi: [number, number] = [0, 0]
   _lo: [number, number] = [0, 0]
 
-  constructor(public data: ReadonlyData<T>, public width: number) {
+  constructor(
+    public data: ReadonlyData<T>,
+    public width: number,
+    options?: Partial<GridOptions>
+  ) {
+    this.options = { ...defaultOptions, ...options }
     this.height = Math.ceil(data.length / width)
   }
 
@@ -68,6 +77,11 @@ export class ReadonlyGrid<T> {
     return x >= 0 && y >= 0 && x < this.width && y < this.height
   }
 
+  validXY(x: number, y: number) {
+    // console.log([x, y])
+    return x >= 0 && y >= 0 && x < this.width && y < this.height
+  }
+
   forEach(cb: (value: T, x: number, y: number, index: number) => void): void {
     for (let i = 0; i < this.data.length; i++) {
       if (this.valid(i)) cb(this.data[i], ...this.cell(i), i)
@@ -79,12 +93,23 @@ export class ReadonlyGrid<T> {
     for (let i = 0; i < this.data.length; i++) {
       if (this.valid(i)) data.push(cb(this.data[i], ...this.cell(i), i))
     }
-    return new Grid(data, this.width)
+    return new Grid(data, this.width, this.options)
   }
 
   *values() {
     for (let i = 0; i < this.data.length; i++) {
       if (this.valid(i)) yield this.data[i]
+    }
+  }
+
+  *adjacent(x: number, y: number) {
+    for (const xx of [x - 1, x, x + 1]) {
+      for (const yy of [y - 1, y, y + 1]) {
+        if (xx == x && yy == y) continue
+        const index = this.index(xx, yy)
+        if (!this.validXY(xx, yy)) continue
+        yield [this.data[index], xx, yy]
+      }
     }
   }
 
@@ -107,12 +132,13 @@ export class ReadonlyGrid<T> {
     if (readonly) {
       const ret = new ReadonlyGrid(
         ro ? this.data : this.data.slice(),
-        this.width + this._lo[0] + this._hi[0]
+        this.width + this._lo[0] + this._hi[0],
+        this.options
       )
       ret.lo(...this._lo)
       ret.hi(...this._hi)
       return ret
-    } else return new Grid(this.flatten(), this.width)
+    } else return new Grid(this.flatten(), this.width, this.options)
   }
 
   *rows() {
@@ -124,10 +150,21 @@ export class ReadonlyGrid<T> {
     depth: number,
     options: InspectOptionsStylized
   ): string => {
+    const that = this
     const name = this instanceof Grid ? "Grid" : "*Grid"
     let ret = options.stylize(`${name}(`, "special")
     ret += [...this.rows()]
-      .map((row) => inspect(row, { ...options, depth: depth - 1 }))
+      .map((row) => {
+        let line: string | ReadonlyData<T> = row
+        if (that.options?.inspect.joinRows)
+          line = Array.isArray(row) ? row.join("") : row
+        return inspect(line, {
+          ...options,
+          depth: depth - 1,
+          breakLength: 200,
+          compact: true,
+        })
+      })
       .join(`\n${" ".repeat(name.length + 1)}`)
     ret += options.stylize(")", "special")
     return ret
@@ -135,8 +172,12 @@ export class ReadonlyGrid<T> {
 }
 
 export class Grid<T> extends ReadonlyGrid<T> {
-  constructor(public data: Data<T>, public width: number) {
-    super(data, width)
+  constructor(
+    public data: Data<T>,
+    public width: number,
+    options: GridOptions
+  ) {
+    super(data, width, options)
   }
 
   set(x: number, y: number, val: T) {
@@ -144,6 +185,8 @@ export class Grid<T> extends ReadonlyGrid<T> {
   }
 
   static fromString(data: string, delimiter = "\n") {
-    return new ReadonlyGrid(data, data.indexOf(delimiter) + 1).hi(1, 0)
+    return new ReadonlyGrid(data, data.indexOf(delimiter) + 1, {
+      inspect: { joinRows: true },
+    }).hi(1, 0)
   }
 }
