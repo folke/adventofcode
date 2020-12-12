@@ -90,13 +90,16 @@ function automata(
       const cell = grid.data[index]
       if (cell == GridSymbol.floor) return
 
+      let newCell = cell
+
       let occupied = 0
-      for (const [xx, yy] of visible.get(x + y * inputGrid.width) ?? []) {
+      const toCheck = visible.get(x + y * inputGrid.width) ?? []
+      for (const [xx, yy] of toCheck) {
         const adj = grid.get(xx, yy)
         if (adj == GridSymbol.occupied) occupied++
+        if (occupied >= minimumOccupied) break
       }
 
-      let newCell = cell
       if (cell == GridSymbol.free && !occupied) newCell = GridSymbol.occupied
       else if (cell == GridSymbol.occupied && occupied >= minimumOccupied)
         newCell = GridSymbol.free
