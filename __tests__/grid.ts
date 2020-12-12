@@ -1,0 +1,59 @@
+import { ReadonlyData, ReadonlyGrid } from "../src/util"
+
+const cases: [ReadonlyData<unknown>, number, number][] = [
+  ["123456789", 3, 3],
+  [new Uint32Array([1, 2, 3, 4, 5]), 3, 2],
+  [[0, 1, 2, 3, 4, 5], 2, 3],
+  ["abcde", 6, 1],
+  [Buffer.from("abcdef"), 3, 2],
+]
+
+test.each(cases)("Grid#%# %p (%ix%i)", (data, width, height) => {
+  const grid = new ReadonlyGrid(data, width)
+  expect(grid.data).toHaveLength(data.length)
+  expect(grid.width).toBe(width)
+  expect(grid.height).toBe(height)
+
+  for (let x = 0; x < grid.width; x++) {
+    for (let y = 0; y < grid.height; y++) {
+      expect(grid.get(x, y)).toBe(data[grid.index(x, y)])
+    }
+  }
+
+  const clone = grid.clone().data
+  // eslint-disable-next-line unicorn/no-for-loop
+  for (let i = 0; i < data.length; i++) {
+    expect(clone[i]).toBe(data[i])
+  }
+
+  const arr = grid.flatten()
+  // eslint-disable-next-line unicorn/no-for-loop
+  for (let i = 0; i < data.length; i++) {
+    expect(arr[i]).toBe(data[i])
+  }
+})
+
+// console.log(
+//   Grid.fromString(
+//     `L.LL.LL.LL
+// LLLLLLL.LL
+// L.L.L..L..
+// LLLL.LL.LL
+// L.LL.LL.LL
+// L.LLLLL.LL
+// ..L.L.....
+// LLLLLLLLLL
+// L.LLLLLL.L
+// L.LLLLL.LL`
+//   )
+// )
+
+// const g = new ReadonlyGrid(`123456789`, 3)
+// console.log(g)
+// console.log(g.hi(1, 1))
+// console.log(g.width)
+// console.log(g.lo(1, 1))
+// console.log([g.width, g.height])
+// console.log(g.clone(true))
+// console.log(g.flatten())
+// console.log(g.clone(false))
