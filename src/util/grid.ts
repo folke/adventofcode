@@ -62,12 +62,12 @@ export class ReadonlyGrid<T> {
     return (y + this._lo[1]) * this._width + x + this._lo[0]
   }
 
-  // private cell(index: number): [number, number] {
-  //   const w = this.width + this._lo[0] + this._hi[0]
-  //   const y = Math.floor(index / w)
-  //   const x = index % w
-  //   return [x - this._lo[0], y - this._lo[1]]
-  // }
+  cell(index: number): [number, number] {
+    const w = this.width + this._lo[0] + this._hi[0]
+    const y = Math.floor(index / w)
+    const x = index % w
+    return [x - this._lo[0], y - this._lo[1]]
+  }
 
   // private valid(index: number) {
   //   const [x, y] = this.cell(index)

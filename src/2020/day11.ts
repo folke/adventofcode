@@ -77,12 +77,17 @@ function automata(
 
   let edits = new Grid(new Int8Array(grid.width * grid.height), grid.width)
 
+  const seats = new Set<number>()
+  grid.forEach((cell, _x, _y, index) => {
+    if (cell !== GridSymbol.floor) seats.add(index)
+  })
+
   let changes = 0
-  let total = 0
   do {
     changes = 0
-    total = 0
-    grid.forEach((cell, x, y) => {
+    for (const index of seats) {
+      const [x, y] = grid.cell(index)
+      const cell = grid.data[index]
       if (cell == GridSymbol.floor) return
 
       let occupied = 0
@@ -96,12 +101,20 @@ function automata(
       else if (cell == GridSymbol.occupied && occupied >= minimumOccupied)
         newCell = GridSymbol.free
 
-      if (cell != newCell) changes++
-      if (newCell == GridSymbol.occupied) total++
+      if (cell != newCell) {
+        changes++
+      } else {
+        // cell is stable for one iteration
+        seats.delete(index)
+      }
       edits.set(x, y, newCell)
-    })
+    }
     ;[grid, edits] = [edits, grid]
   } while (changes)
 
-  return total
+  let occupied = 0
+  grid.forEach((v) => {
+    if (v == GridSymbol.occupied) occupied++
+  })
+  return occupied
 }
