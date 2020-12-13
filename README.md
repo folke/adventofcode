@@ -29,6 +29,7 @@ My personal goal for this year is to solve all puzzles within **25ms** total, so
 |[Day 10](./src/2020/day10.ts) | 14µs | 23µs | ⚡️ 37µs | 3.83ms | :star: :star: |
 |[Day 11](./src/2020/day11.ts) | 32.43ms | 55.86ms | ❗️ 88.29ms | 92.12ms | :star: :star: |
 |[Day 12](./src/2020/day12.ts) | 23µs | 26µs | ⚡️ 50µs | 92.17ms | :star: :star: |
+|[Day 13](./src/2020/day13.ts) | 4µs | 19µs | ⚡️ 23µs | 92.19ms | :star: :star: |
 
 ### :snowflake: 2019
 |[2019](./src/2019) | Part1 | Part2 | Total | Days Total | Stars|
