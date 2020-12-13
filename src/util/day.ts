@@ -6,7 +6,7 @@ import { addBenchmark } from "./bench"
 import { format, ms } from "./format"
 import { Input } from "./input"
 
-export type Answer = string | number
+export type Answer = string | number | bigint
 export type Options = Record<string, number | string | boolean | undefined>
 export type Example = [string, Answer] | [string, Answer, Options]
 
