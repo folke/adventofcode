@@ -1,7 +1,7 @@
 import { Input, Solution } from "../util"
 
 type Rule = [[number, number], [number, number]]
-type Rules = Map<string, Rule>
+type Rules = [string, Rule][]
 
 export const part1: Solution = (input: Input) => {
   const { nearby, rules } = parseInput(input)
@@ -40,15 +40,15 @@ export const part2: Solution = (input: Input) => {
 
   for (let col = 0; col < ticket.length; col++) {
     validFields[col] = []
-    for (const [field, rule] of rules.entries()) {
+    for (const rule of rules) {
       if (
         tickets.every(
           (t) =>
-            (t[col] >= rule[0][0] && t[col] <= rule[0][1]) ||
-            (t[col] >= rule[1][0] && t[col] <= rule[1][1])
+            (t[col] >= rule[1][0][0] && t[col] <= rule[1][0][1]) ||
+            (t[col] >= rule[1][1][0] && t[col] <= rule[1][1][1])
         )
       )
-        validFields[col].push(field)
+        validFields[col].push(rule[0])
     }
   }
 
@@ -79,10 +79,10 @@ function invalid(t: number[], rules: Rules) {
   let ret = 0
   for (const v of t) {
     if (
-      ![...rules.values()].some(
+      !rules.some(
         (rule) =>
-          (v >= rule[0][0] && v <= rule[0][1]) ||
-          (v >= rule[1][0] && v <= rule[1][1])
+          (v >= rule[1][0][0] && v <= rule[1][0][1]) ||
+          (v >= rule[1][1][0] && v <= rule[1][1][1])
       )
     )
       ret += v
@@ -103,14 +103,9 @@ function parseInput(input: Input) {
     .slice(1)
     .map((l) => l.split(",").map((x) => +x))
 
-  const rules: Rules = new Map<string, Rule>(
-    rulesText.split("\n").map((rule) => {
-      const [field, value] = rule.split(": ")
-      return [
-        field,
-        value.split(" or ").map((v) => v.split("-").map((x) => +x)),
-      ]
-    }) as [string, Rule][]
-  )
+  const rules: Rules = rulesText.split("\n").map((rule) => {
+    const [field, value] = rule.split(": ")
+    return [field, value.split(" or ").map((v) => v.split("-").map((x) => +x))]
+  }) as [string, Rule][]
   return { nearby, rules, ticket }
 }
