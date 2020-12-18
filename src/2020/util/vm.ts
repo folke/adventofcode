@@ -21,12 +21,7 @@ export class VM {
   }
 
   private compile(): Instruction[] {
-    return this.code
-      .strings()
-      .map((line) => [
-        Operation[line.slice(0, 3) as keyof typeof Operation],
-        +line.slice(4),
-      ])
+    return this.code.strings().map((line) => [Operation[line.slice(0, 3) as keyof typeof Operation], +line.slice(4)])
   }
 
   step() {
@@ -59,11 +54,6 @@ export class VM {
   }
 
   debug() {
-    console.log(
-      `${this.loc}: ${Operation[this.program[this.loc][0]]} ${
-        this.program[this.loc][1]
-      }`,
-      { acc: this.acc }
-    )
+    console.log(`${this.loc}: ${Operation[this.program[this.loc][0]]} ${this.program[this.loc][1]}`, { acc: this.acc })
   }
 }

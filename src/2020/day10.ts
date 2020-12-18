@@ -4,8 +4,7 @@ export const part1: Solution = (input: Input) => {
   const adapters = input.numbers().sort((a, b) => a - b)
 
   const diff = [0, 0, 0, 0]
-  for (let a = 0; a < adapters.length; a++)
-    diff[adapters[a] - (adapters[a - 1] ?? 0)]++
+  for (let a = 0; a < adapters.length; a++) diff[adapters[a] - (adapters[a - 1] ?? 0)]++
   return (diff[3] + 1) * diff[1]
 }
 part1.examples = [
@@ -64,11 +63,7 @@ const cache = new Map<number, number>()
 function pathCount(adapters: number[], from: number): number {
   if (cache.has(from)) return cache.get(from) as number
   let paths = 0
-  for (
-    let next = from + 1;
-    next < adapters.length && adapters[next] - adapters[from] <= 3;
-    next++
-  ) {
+  for (let next = from + 1; next < adapters.length && adapters[next] - adapters[from] <= 3; next++) {
     paths += pathCount(adapters, next)
   }
   paths ||= 1

@@ -32,11 +32,7 @@ export class ReadonlyGrid<T> {
   _lo: [number, number] = [0, 0]
   private _width: number
 
-  constructor(
-    public data: ReadonlyData<T>,
-    public width: number,
-    options?: Partial<GridOptions>
-  ) {
+  constructor(public data: ReadonlyData<T>, public width: number, options?: Partial<GridOptions>) {
     this._width = width
     this.options = { ...defaultOptions, ...options }
     this.height = Math.ceil(data.length / width)
@@ -107,10 +103,7 @@ export class ReadonlyGrid<T> {
     }
   }
 
-  *adjacent(
-    x: number,
-    y: number
-  ): Generator<[T, number, number], void, unknown> {
+  *adjacent(x: number, y: number): Generator<[T, number, number], void, unknown> {
     for (const yy of [y - 1, y, y + 1]) {
       for (const xx of [x - 1, x, x + 1]) {
         if (xx == x && yy == y) continue
@@ -150,21 +143,16 @@ export class ReadonlyGrid<T> {
   }
 
   *rows() {
-    for (let y = 0; y < this.height; y++)
-      yield this.data.slice(this.index(0, y), this.index(0, y) + this.width)
+    for (let y = 0; y < this.height; y++) yield this.data.slice(this.index(0, y), this.index(0, y) + this.width)
   }
 
-  [inspect.custom]: CustomInspectFunction = (
-    depth: number,
-    options: InspectOptionsStylized
-  ): string => {
+  [inspect.custom]: CustomInspectFunction = (depth: number, options: InspectOptionsStylized): string => {
     const name = this instanceof Grid ? "Grid" : "*Grid"
     let ret = options.stylize(`${name}(`, "special")
     ret += [...this.rows()]
       .map((row) => {
         let line: string | ReadonlyData<T> = row
-        if (this.options?.inspect.joinRows)
-          line = Array.isArray(row) ? row.join("") : row
+        if (this.options?.inspect.joinRows) line = Array.isArray(row) ? row.join("") : row
         return inspect(line, {
           ...options,
           depth: depth - 1,
@@ -179,11 +167,7 @@ export class ReadonlyGrid<T> {
 }
 
 export class Grid<T> extends ReadonlyGrid<T> {
-  constructor(
-    public data: Data<T>,
-    public width: number,
-    options?: GridOptions
-  ) {
+  constructor(public data: Data<T>, public width: number, options?: GridOptions) {
     super(data, width, options)
   }
 

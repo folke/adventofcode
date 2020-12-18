@@ -38,11 +38,7 @@ export const part2: Solution = (input: Input) => {
       const [, minS, maxS, char, password] = m
       const min = +minS
       const max = +maxS
-      if (
-        (password.charAt(min - 1) === char) !=
-        (password.charAt(max - 1) === char)
-      )
-        correct++
+      if ((password.charAt(min - 1) === char) != (password.charAt(max - 1) === char)) correct++
     } else throw new Error(`Invalid input ${line}`)
   }
   return correct

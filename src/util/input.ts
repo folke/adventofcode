@@ -38,16 +38,12 @@ export class Input {
 
   private static async _fetch(year: number, day: number) {
     const session = process.env.AOC_SESSION
-    if (!session)
-      throw new Error("Please specify AOC_SESSION in your .env file")
+    if (!session) throw new Error("Please specify AOC_SESSION in your .env file")
     return await fetch(`https://adventofcode.com/${year}/day/${day}/input`, {
       headers: { cookie: `session=${session}` },
     })
       .then((res) => {
-        if (!res.ok)
-          throw new Error(
-            `Could not fetch input for day ${day} (${res.status} ${res.statusText})`
-          )
+        if (!res.ok) throw new Error(`Could not fetch input for day ${day} (${res.status} ${res.statusText})`)
         return res
       })
       .then((res) => res.text())

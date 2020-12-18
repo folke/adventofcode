@@ -3,12 +3,7 @@ import { Input, Solution } from "../util"
 export const part1: Solution = (input: Input) => {
   return input
     .strings()
-    .map(
-      (line) =>
-        /([aeiou].*){3}/gu.test(line) &&
-        /([a-z])\1/u.test(line) &&
-        !/ab|cd|pq|xy/u.test(line)
-    )
+    .map((line) => /([aeiou].*){3}/gu.test(line) && /([a-z])\1/u.test(line) && !/ab|cd|pq|xy/u.test(line))
     .filter((x) => x).length
 }
 part1.examples = [

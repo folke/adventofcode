@@ -44,10 +44,7 @@ part1.examples = [
 ]
 part1.answer = 32321523
 
-export const part2: Solution = (
-  input: Input,
-  options = { invalid: part1.answer }
-) => {
+export const part2: Solution = (input: Input, options = { invalid: part1.answer }) => {
   const numbers = input.numbers()
   const invalid = options.invalid as number
 

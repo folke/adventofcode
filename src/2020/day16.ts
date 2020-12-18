@@ -44,8 +44,7 @@ export const part2: Solution = (input: Input) => {
       if (
         tickets.every(
           (t) =>
-            (t[col] >= rule[1][0][0] && t[col] <= rule[1][0][1]) ||
-            (t[col] >= rule[1][1][0] && t[col] <= rule[1][1][1])
+            (t[col] >= rule[1][0][0] && t[col] <= rule[1][0][1]) || (t[col] >= rule[1][1][0] && t[col] <= rule[1][1][1])
         )
       )
         validFields[col].push(rule[0])
@@ -78,13 +77,7 @@ part2.answer = 1909224687553
 function invalid(t: number[], rules: Rules) {
   let ret = 0
   for (const v of t) {
-    if (
-      !rules.some(
-        (rule) =>
-          (v >= rule[1][0][0] && v <= rule[1][0][1]) ||
-          (v >= rule[1][1][0] && v <= rule[1][1][1])
-      )
-    )
+    if (!rules.some((rule) => (v >= rule[1][0][0] && v <= rule[1][0][1]) || (v >= rule[1][1][0] && v <= rule[1][1][1])))
       ret += v
   }
   return ret

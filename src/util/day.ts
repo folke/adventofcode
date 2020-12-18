@@ -7,7 +7,7 @@ import { format, ms } from "./format"
 import { Input } from "./input"
 
 export type Answer = string | number | bigint
-export type Options = Record<string, number | string | boolean | undefined>
+export type Options = Record<string, number | string | boolean | undefined | bigint>
 export type Example = [string, Answer] | [string, Answer, Options]
 
 export type Solution = {
@@ -35,12 +35,7 @@ export class Day {
   part1: Solution
   part2: Solution
 
-  private constructor(
-    public year: number,
-    public day: number,
-    mod: DayModule,
-    public input: Input
-  ) {
+  private constructor(public year: number, public day: number, mod: DayModule, public input: Input) {
     this.part1 = mod.part1
     this.part1.part = 1
     this.part2 = mod.part2
@@ -83,16 +78,12 @@ export class Day {
         if (`${need}` != `${found}`) {
           throw new Error(
             `${
-              chalk.red("example failed") +
-              chalk.dim(` (found: ${format(found)}, need: ${format(need)})`)
+              chalk.red("example failed") + chalk.dim(` (found: ${format(found)}, need: ${format(need)})`)
             }\n${chalk.dim(example[0])}`
           )
         }
       }
-      if (options.verbose)
-        console.log(
-          `${chalk.green("    ✔ ") + part.examples.length.toString()} examples`
-        )
+      if (options.verbose) console.log(`${chalk.green("    ✔ ") + part.examples.length.toString()} examples`)
     }
 
     const { answer, duration } = await this.measure(part, options)
@@ -100,22 +91,11 @@ export class Day {
     if (answer === undefined) throw new Error("no solution was found")
     if (part.answer !== answer)
       throw new Error(
-        chalk.red("solution failed") +
-          chalk.dim(` (found: ${format(answer)}, need: ${format(part.answer)})`)
+        chalk.red("solution failed") + chalk.dim(` (found: ${format(answer)}, need: ${format(part.answer)})`)
       )
-    addBenchmark(
-      this.year,
-      this.day,
-      part.part as 1 | 2,
-      duration,
-      options.benchmark.replace
-    )
+    addBenchmark(this.year, this.day, part.part as 1 | 2, duration, options.benchmark.replace)
     if (options.verbose)
-      console.log(
-        `${chalk.green("    ✔ ")}answer: ${format(answer)} (${chalk.magenta(
-          ms(duration)
-        )})`
-      )
+      console.log(`${chalk.green("    ✔ ")}answer: ${format(answer)} (${chalk.magenta(ms(duration))})`)
   }
 
   private async measure(part: Solution, options: RunOptions) {
@@ -141,10 +121,7 @@ export class Day {
     const start = performance.now()
     let runs = 0
     let answer
-    while (
-      runs < options.benchmark.minRuns ||
-      performance.now() - start < options.benchmark.minTime
-    ) {
+    while (runs < options.benchmark.minRuns || performance.now() - start < options.benchmark.minTime) {
       answer = await wrapped()
       runs++
     }

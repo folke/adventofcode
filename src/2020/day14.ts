@@ -35,11 +35,7 @@ mem[8] = 0`,
 ]
 part1.answer = 11884151942312n
 
-type MemoryNode = [
-  MemoryNode | undefined,
-  MemoryNode | undefined,
-  MemoryNode | undefined
-]
+type MemoryNode = [MemoryNode | undefined, MemoryNode | undefined, MemoryNode | undefined]
 
 function memcopy(node: MemoryNode): MemoryNode {
   if (!Array.isArray(node)) return node
@@ -50,13 +46,7 @@ function memcopy(node: MemoryNode): MemoryNode {
   return ret
 }
 
-function memset(
-  node: MemoryNode,
-  mask: string,
-  address: string,
-  bit: number,
-  value: bigint
-) {
+function memset(node: MemoryNode, mask: string, address: string, bit: number, value: bigint) {
   // abuse [0] as the bigint value at depth 36
   // @ts-ignore
   if (bit == 36) node[0] = value
@@ -90,10 +80,7 @@ function memset(
 function memsum(node: MemoryNode, depth = 0): bigint {
   if (depth == 36) return (node[0] as unknown) as bigint
   if (node[2]) return 2n * memsum(node[2], depth + 1)
-  return (
-    (node[0] ? memsum(node[0], depth + 1) : 0n) +
-    (node[1] ? memsum(node[1], depth + 1) : 0n)
-  )
+  return (node[0] ? memsum(node[0], depth + 1) : 0n) + (node[1] ? memsum(node[1], depth + 1) : 0n)
 }
 
 export const part2: Solution = (input: Input) => {

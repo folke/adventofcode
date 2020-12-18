@@ -1,14 +1,6 @@
 import { field, Input, Solution } from "../util"
 
-const passportFields = [
-  "byr",
-  "iyr",
-  "eyr",
-  "hgt",
-  "hcl",
-  "ecl",
-  "pid",
-] as const
+const passportFields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"] as const
 
 type PassportField = typeof passportFields[number]
 type Passport = Map<PassportField, string>
@@ -69,11 +61,7 @@ export const part2: Solution = (input: Input) => {
       between(passport.get("iyr"), 2010, 2020) &&
       between(passport.get("eyr"), 2020, 2030) &&
       height &&
-      between(
-        height[1],
-        height[2] == "cm" ? 150 : 59,
-        height[2] == "cm" ? 193 : 76
-      ) &&
+      between(height[1], height[2] == "cm" ? 150 : 59, height[2] == "cm" ? 193 : 76) &&
       passport.get("hcl")?.match(/^#[0-9a-f]{6}$/u) &&
       passport.get("ecl")?.match(/^(amb|blu|brn|gry|grn|hzl|oth)$/u) &&
       passport.get("pid")?.match(/^\d{9}$/u)

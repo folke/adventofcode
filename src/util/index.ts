@@ -5,11 +5,7 @@ export * from "./bench"
 export * from "./grid"
 
 export type FieldState = { offset: number }
-export function field(
-  state: FieldState,
-  str: string,
-  delims: string[]
-): string {
+export function field(state: FieldState, str: string, delims: string[]): string {
   let end = str.length
   for (const delim of delims) {
     const i = str.indexOf(delim, state.offset)

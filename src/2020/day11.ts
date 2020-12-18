@@ -57,11 +57,7 @@ part2.answer = 2144
 function automata(
   input: Input,
   minimumOccupied: number,
-  adjacentSeats: (
-    x: number,
-    y: number,
-    grid: ReadonlyGrid<string>
-  ) => Generator<[number, number], void, unknown>
+  adjacentSeats: (x: number, y: number, grid: ReadonlyGrid<string>) => Generator<[number, number], void, unknown>
 ) {
   const inputGrid = input.grid()
 
@@ -101,8 +97,7 @@ function automata(
       }
 
       if (cell == GridSymbol.free && !occupied) newCell = GridSymbol.occupied
-      else if (cell == GridSymbol.occupied && occupied >= minimumOccupied)
-        newCell = GridSymbol.free
+      else if (cell == GridSymbol.occupied && occupied >= minimumOccupied) newCell = GridSymbol.free
 
       if (cell != newCell) {
         changes++

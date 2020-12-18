@@ -11,9 +11,7 @@ function load() {
   if (!_results) {
     try {
       _results = fs.existsSync(resultsPath)
-        ? (JSON.parse(
-            fs.readFileSync(resultsPath, { encoding: "utf-8" })
-          ) as Record<number, Results>)
+        ? (JSON.parse(fs.readFileSync(resultsPath, { encoding: "utf-8" })) as Record<number, Results>)
         : {}
     } catch {
       _results = {}
@@ -38,18 +36,10 @@ export function total(year: number, day?: number) {
   const results = loadYear(year)
   return day
     ? results[day - 1][0] + results[day - 1][1]
-    : results
-        .map((tt) => (tt ? tt[0] + tt[1] : 0))
-        .reduce((prev, current) => prev + current)
+    : results.map((tt) => (tt ? tt[0] + tt[1] : 0)).reduce((prev, current) => prev + current)
 }
 
-export function addBenchmark(
-  year: number,
-  day: number,
-  part: 1 | 2,
-  duration: number,
-  replace = true
-) {
+export function addBenchmark(year: number, day: number, part: 1 | 2, duration: number, replace = true) {
   const results = loadYear(year)
   if (!replace && results?.[day - 1]?.[part - 1]) return
   if (!results[day - 1]) results[day - 1] = [0, 0]
@@ -60,14 +50,7 @@ export function addBenchmark(
 function getTable(year: number) {
   const results = loadYear(year)
   const ret: string[][] = [
-    [
-      `[${year}](./src/${year})`,
-      "Part1",
-      "Part2",
-      "Total",
-      "Days Total",
-      "Stars",
-    ],
+    [`[${year}](./src/${year})`, "Part1", "Part2", "Total", "Days Total", "Stars"],
     ["---", "---", "---", "---", "---", "---"],
   ]
   let cummulative = 0
@@ -88,9 +71,7 @@ function getTable(year: number) {
     if (times?.[1]) row[5] += ":star: "
     ret.push(row)
   }
-  return `### :snowflake: ${year}\n${ret
-    .map((row) => `|${row.join(" | ")}|`)
-    .join("\n")}`
+  return `### :snowflake: ${year}\n${ret.map((row) => `|${row.join(" | ")}|`).join("\n")}`
 }
 
 export function updateReadme() {
