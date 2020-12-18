@@ -87,8 +87,6 @@ function solve(input: Input, order: number, cycles: number) {
     expand()
     loop()
     pocket = edits
-    const size = dims.map((d) => d[1] - d[0] + 1).reduce((a, b) => a * b, 1)
-    console.log({ size, active: pocket.size })
   }
 
   return pocket.size
