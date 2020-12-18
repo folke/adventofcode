@@ -12,7 +12,7 @@ There's no need to *build* anything. Source files are transpiled and cached on-t
 ## :zap: Benchmark
 
 ~~My personal goal for this year is to solve all puzzles within **25ms** total, so an average of **1ms** per puzzle.~~
-**edit:** never mind 😂
+> **edit:** never mind 😂
 
 <!-- RESULTS:BEGIN -->
 ### :snowflake: 2020
