@@ -36,6 +36,7 @@ There's no need to *build* anything. Source files are transpiled and cached on-t
 |[Day 16](./src/2020/day16.ts) | 554µs | 1.26ms | ❗️ 1.81ms | 785.28ms | :star: :star: |
 |[Day 17](./src/2020/day17.ts) | 41.86ms | 1359.56ms | ❗️ 1401.42ms | 2186.7ms | :star: :star: |
 |[Day 18](./src/2020/day18.ts) | 1.91ms | 1.91ms | ❗️ 3.82ms | 2190.52ms | :star: :star: |
+|[Day 19](./src/2020/day19.ts) | 425µs | 667µs | ❗️ 1.09ms | 2191.61ms | :star: :star: |
 
 ### :snowflake: 2019
 |[2019](./src/2019) | Part1 | Part2 | Total | Days Total | Stars|
